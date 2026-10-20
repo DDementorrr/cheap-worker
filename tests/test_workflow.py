@@ -165,6 +165,7 @@ class WorkflowTests(unittest.TestCase):
     def test_dirty_repository_apply_and_rollback_preserve_user_file(self):
         base, repo = self.setup_case()
         (repo / "local.txt").write_text("user work")
+        (repo / "calc.py").write_text("def add(a, b):\n    return 10\n")
         with server() as (url, _):
             p, state, run = invoke(base / "runner", repo, url)
             self.assertEqual(p.returncode, 0)
@@ -179,7 +180,7 @@ class WorkflowTests(unittest.TestCase):
                                  operation=["rollback", "--run", str(run)])
             self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
             self.assertEqual(state["status"], "ROLLED_BACK")
-        self.assertIn("return 0", (repo / "calc.py").read_text())
+        self.assertIn("return 10", (repo / "calc.py").read_text())
         self.assertFalse((repo / "tests/test_calc.py").exists())
         self.assertEqual((repo / "local.txt").read_text(), "user work")
 
