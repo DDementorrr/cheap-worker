@@ -152,4 +152,4 @@ env -u PYTHONPATH -u PYTHONHOME .venv/bin/python scripts/offline_demo.py
 
 演示使用 localhost 假供应商，经过真实 SDK、文件工具、复制工作区、实际单元测试、失败返工和应用/恢复到源仓库的完整路径；模拟聊天反馈与验收记录，不代表真实高/低模型效果。记录会保留在 `runs/skill-offline-demo-*`。
 
-27 项自动化测试、技能格式校验和本地失败返工演示均已通过。本次结果与限制记录在 [聊天式执行器改造报告](docs/build-reports/2026-10-19-聊天技能式低价模型执行器改造.md)。技能的显式调用与脚本组织依据 [OpenAI 官方技能文档](https://learn.chatgpt.com/docs/build-skills.md)；本机安装兼容当前 `skill-creator` 的目录规则和官方文档的 `.agents/skills` 用户目录。
+28 项自动化测试、技能格式校验和本地失败返工演示均已通过。本次结果与限制记录在 [聊天式执行器改造报告](docs/build-reports/2026-10-19-聊天技能式低价模型执行器改造.md) 和 [无分支复制执行与可回滚改造报告](docs/build-reports/2026-10-20-无分支复制执行与可回滚改造.md)。技能的显式调用与脚本组织依据 [OpenAI 官方技能文档](https://learn.chatgpt.com/docs/build-skills.md)；本机安装兼容当前 `skill-creator` 的目录规则和官方文档的 `.agents/skills` 用户目录。
