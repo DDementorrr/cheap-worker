@@ -1,0 +1,42 @@
+# Only the external worker uses an API. The current chat plans and reviews.
+roles:
+  executor:
+    env_prefix: EXECUTOR
+    api: chat_completions
+    max_output_tokens: 8000
+    chat_token_parameter: max_tokens
+    request_options: {}
+execution:
+  # copy snapshots the current repository, including permitted dirty changes,
+  # without creating a source branch. branch is the stricter detached-worktree mode.
+  mode: copy
+workflow:
+  max_rework_rounds: 2
+  max_model_requests: 24
+  max_turns_per_stage: 12
+  max_tool_calls_per_stage: 32
+  max_verification_checks: 12
+  api_timeout_seconds: 180
+  api_max_retries: 0
+  command_timeout_seconds: 900
+  max_file_bytes: 200000
+  max_context_chars: 180000
+  max_review_chars: 100000
+  max_command_output_chars: 12000
+  max_check_log_bytes: 5000000
+checks:
+  whitespace:
+    argv:
+    - git
+    - -c
+    - core.hooksPath=/dev/null
+    - diff
+    - --check
+    - HEAD
+    - --
+required_checks:
+- whitespace
+safety:
+  denied_paths: []
+  command_env:
+    PYTHONDONTWRITEBYTECODE: '1'

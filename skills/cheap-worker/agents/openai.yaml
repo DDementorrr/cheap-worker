@@ -1,0 +1,6 @@
+interface:
+  display_name: "低价模型执行助手"
+  short_description: "聊天模型规划与验收，按明确范围委派低价模型执行构建任务"
+  default_prompt: "使用 $cheap-worker 完成当前任务，由你规划和验收，合适的实施步骤交给低价执行模型。"
+policy:
+  allow_implicit_invocation: false
